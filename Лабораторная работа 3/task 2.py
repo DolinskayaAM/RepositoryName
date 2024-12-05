@@ -1,17 +1,12 @@
 # TODO Напишите функцию find_common_participants
-def find_common_participants(a, b, c = ","):
-    a = a.split(c)
-    b = b.split(c)
+def find_common_participants(participants_first, participants_second, separator = ","):
+    a = participants_first.split(separator)
+    b = participants_second.split(separator)
 
-    result = []
-    i = j = 0
-    for i in range(len(a)):
-        for j in range(len(b)):
-            if a[i] == b[j]:
-                result.append(b[j])
+    common_participants= list(set(a).intersection(b))
+    common_participants.sort()
 
-    result.sort()
-    return result  # Отсортированный вариант
+    return common_participants
 
 participants_first_group = "Иванов|Петров|Сидоров"
 participants_second_group = "Петров|Сидоров|Смирнов"
