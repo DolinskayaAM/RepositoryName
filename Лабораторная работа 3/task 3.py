@@ -1,21 +1,23 @@
 # TODO  Напишите функцию count_letters
-# TODO Напишите функцию calculate_frequency
-def count_letters(main_str):
-    count_letters = {}
-    for char in main_str.lower():
+def count_letters(text):
+    text = text.lower()
+    letter_counts = {}
+    for char in text:
         if char.isalpha():
-            if char in count_letters:
-                count_letters[char] += 1
+            if char in letter_counts:
+                letter_counts[char] += 1
             else:
-                count_letters[char] = 1
-    return count_letters
-
-def calculate_frequency(count_letters):
-    total_letters = sum(count_letters.values())
-    letter_frequency = {}
-    for current_letter, count in count_letters.items():
-        letter_frequency[current_letter] = count / total_letters
-    return letter_frequency
+                letter_counts[char] = 1
+    return letter_counts
+# TODO Напишите функцию calculate_frequency
+def calculate_frequency(letter_counts):
+    total_letters = sum(letter_counts.values())
+    frequencies = {char: count / total_letters for char, count in letter_counts.items()}
+    return frequencies
+def print_frequencies(frequencies):
+    for char in frequencies:
+        value = frequencies.get(char)
+        print(f"{char}: {value:.2f}")
 
 main_str = """
 У лукоморья дуб зелёный;
@@ -52,7 +54,8 @@ main_str = """
 Под ним сидел, и кот учёный
 Свои мне сказки говорил.
 """
-frequency_dict = calculate_frequency(count_letters(main_str))
-for letter, frequency in frequency_dict.items():
+
 # TODO Распечатайте в столбик букву и её частоту в тексте
-    print(f"{letter}: {frequency:.2f}")
+letters_count = count_letters(main_str)
+frequencies = calculate_frequency(letters_count)
+print_frequencies(frequencies)
