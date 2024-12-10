@@ -2,12 +2,10 @@
 def count_letters(text):
     text = text.lower()
     letter_counts = {}
+    DEF_COUNT = 0
     for char in text:
         if char.isalpha():
-            if char in letter_counts:
-                letter_counts[char] += 1
-            else:
-                letter_counts[char] = 1
+            letter_counts[char] = letter_counts.get(char, DEF_COUNT) + 1
     return letter_counts
 # TODO Напишите функцию calculate_frequency
 def calculate_frequency(letter_counts):
@@ -54,7 +52,6 @@ main_str = """
 Под ним сидел, и кот учёный
 Свои мне сказки говорил.
 """
-
 # TODO Распечатайте в столбик букву и её частоту в тексте
 letters_count = count_letters(main_str)
 frequencies = calculate_frequency(letters_count)
