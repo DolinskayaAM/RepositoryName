@@ -12,8 +12,7 @@ def task() -> None:
     data = []
     with open(INPUT_FILENAME) as file:
         csv_reader = csv.DictReader(file)
-        for line in csv_reader:
-            data.append(line)
+        data = [row for row in csv_reader]
     # TODO Сериализовать в файл с отступами равными 4
     with open(OUTPUT_FILENAME, 'w') as output_file:
         json.dump(data, output_file, indent=4)
